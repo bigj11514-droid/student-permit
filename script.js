@@ -67,6 +67,5 @@ form.addEventListener('submit', event => {
   const studentLines = students.map((student, index) => `${index + 1}. ${student.name} - ${student.classroom}`);
   const message = `*${destination} Check-In*\n*Teacher:* ${teacherName}\n*Teacher WhatsApp:* ${teacherPhone}\n*Students:*\n${studentLines.join('\n')}`;
   const url = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
-  status.textContent = 'WhatsApp opened with the check-in ready. Review the recipient and message, then press Send in WhatsApp.';
+  window.location.href = url;
 });
