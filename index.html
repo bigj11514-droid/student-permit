@@ -1,10 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07121d">
-  <meta name="description" content="Check in students for the Dieudonne International School ICT lab.">
+  <meta name="description" content="Prepare an ICT lab student check-in message for WhatsApp.">
   <title>ICT Lab Check-In | Dieudonne International School</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,29 +29,35 @@
           <span class="destination-arrow" aria-hidden="true">↗</span>
         </div>
       </div>
+
       <h2 id="page-title">Student check-in</h2>
-      <p class="intro">Record the students coming to the ICT lab. Review the prepared WhatsApp message and send it to confirm.</p>
+      <p class="intro">Enter the teacher and student details. WhatsApp will open with a message ready for the teacher to send.</p>
 
       <form id="checkin-form">
         <div class="teacher-field">
-          <label for="teacher-name">Approving teacher’s name</label>
+          <label for="teacher-name">Approving teacher's name</label>
           <input id="teacher-name" name="teacherName" type="text" placeholder="Enter your full name" autocomplete="name" maxlength="100" required>
         </div>
+
         <div class="teacher-field">
           <label for="teacher-phone">Teacher's WhatsApp number</label>
-          <input id="teacher-phone" name="teacherPhone" type="tel" placeholder="e.g. +233 20 123 4567" autocomplete="tel" maxlength="20" required>
+          <input id="teacher-phone" name="teacherPhone" type="tel" placeholder="e.g. +233 20 123 4567" autocomplete="tel" maxlength="25" required>
         </div>
+
         <div id="student-list" class="student-list">
           <fieldset class="student-entry">
             <legend><span class="entry-number">01</span> Student details</legend>
-            <label for="student-name-1">Student’s full name</label>
-            <input id="student-name-1" name="studentName" type="text" placeholder="e.g. Alex Doe" autocomplete="name" required>
+            <label for="student-name-1">Student's full name</label>
+            <input id="student-name-1" name="studentName" type="text" placeholder="e.g. Alex Doe" maxlength="100" required>
             <label for="student-class-1">Class</label>
             <select id="student-class-1" name="studentClass" required>
               <option value="" disabled selected>Select a class</option>
-              <option>Nursery</option><option>Kindergarten</option>
-              <option>Grade 1</option><option>Grade 2</option><option>Grade 3</option><option>Grade 4</option><option>Grade 5</option><option>Grade 6</option>
-              <option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
+              <option>Nursery</option>
+              <option>Kindergarten</option>
+              <option>Grade 1</option><option>Grade 2</option><option>Grade 3</option>
+              <option>Grade 4</option><option>Grade 5</option><option>Grade 6</option>
+              <option>Grade 7</option><option>Grade 8</option><option>Grade 9</option>
+              <option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
               <option value="other">Other</option>
             </select>
           </fieldset>
@@ -60,12 +66,14 @@
         <button type="button" id="add-student" class="add-button"><span aria-hidden="true">＋</span> Add another student</button>
         <button type="submit" class="submit-button"><span>Approve &amp; send check-in</span><span aria-hidden="true">↗</span></button>
         <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        <a id="whatsapp-link" class="whatsapp-link" target="_blank" rel="noopener noreferrer" hidden>Open WhatsApp message</a>
       </form>
-      <p class="privacy-note"><span aria-hidden="true">▣</span> WhatsApp opens with the message ready. The teacher must press Send.</p>
+
+      <p class="privacy-note"><span aria-hidden="true">▣</span> The teacher reviews the message and presses Send in WhatsApp.</p>
     </section>
+
     <footer>Learning today, leading tomorrow.</footer>
   </main>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
-

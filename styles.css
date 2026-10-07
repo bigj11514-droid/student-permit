@@ -393,6 +393,22 @@ select:focus {
   margin-top: 10px;
 }
 
+.form-message[data-state="info"] {
+  color: var(--green);
+}
+
+.whatsapp-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.whatsapp-link[hidden] {
+  display: none;
+}
+
 .privacy-note {
   display: flex;
   align-items: center;

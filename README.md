@@ -1,11 +1,12 @@
-# Dieudonne ICT Lab check-in
+# Dieudonne ICT Lab Check-In
 
-This is a static check-in form for GitHub Pages. Submitting opens WhatsApp with a prepared message; the teacher reviews and sends it in WhatsApp.
+A static GitHub Pages form that prepares a WhatsApp message for the ICT teacher. It does not use a server or send the message automatically. The teacher reviews the prefilled WhatsApp message and presses **Send**.
 
-## Setup
+## Publish
 
-1. Confirm the configured WhatsApp recipient in `script.js` is correct. It is set to `233207918169` (Ghana country code plus the provided local number without its leading zero).
-2. Publish the files to GitHub Pages.
-3. Enter the teacher's name and WhatsApp number, student names, and classes, then choose **Approve & send check-in**. WhatsApp opens with the message ready to review and send.
+1. Publish `index.html`, `styles.css`, and `script.js` with GitHub Pages.
+2. On the form, enter the teacher's name and WhatsApp number, then add each student's name and class.
+3. Select **Approve & send check-in**. WhatsApp opens a message addressed to the school number with the entered details filled in.
+4. Review the message in WhatsApp and press **Send**.
 
-The school phone number is part of the public page source. Do not put access tokens or other secrets in the client-side files. The teacher's number is included in the message but does not change which WhatsApp account sends it. The school recipient must have an active WhatsApp account.
+The recipient is set in `script.js` as `233207918169`, the international format for the provided Ghanaian number `0207918169`. A teacher's device needs WhatsApp installed or WhatsApp Web signed in. If the browser blocks the new tab, use the **Open WhatsApp message** link shown by the form.
