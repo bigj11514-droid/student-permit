@@ -2,7 +2,7 @@
 const studentList = document.getElementById('student-list');
 const addButton = document.getElementById('add-student');
 // Use the school's international WhatsApp number, digits only.
-const WHATSAPP_PHONE_NUMBER = 'YOUR_PHONE_NUMBER';
+const WHATSAPP_PHONE_NUMBER = '233207918169';
 
 function updateEntries() {
   const entries = [...studentList.querySelectorAll('.student-entry')];
