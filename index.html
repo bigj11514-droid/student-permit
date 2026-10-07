@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123b35">
+  <title>ICT Lab Check-In | Dieudonne International School</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="school-header">
+      <div class="school-mark" aria-hidden="true">D<span>·</span>I</div>
+      <div>
+        <p class="eyebrow">Welcome to the</p>
+        <h1>Dieudonne<br class="mobile-break"> International School</h1>
+      </div>
+    </header>
+
+    <section class="checkin-card" aria-labelledby="page-title">
+      <div class="card-topline">
+        <span class="lab-icon" aria-hidden="true">⌘</span>
+        <span class="status"><span></span> ICT LAB</span>
+      </div>
+      <h2 id="page-title">Student check-in</h2>
+      <p class="intro">Record the students who are coming to the ICT lab. Their details will be sent for confirmation.</p>
+
+      <form id="checkin-form">
+        <div id="student-list" class="student-list">
+          <fieldset class="student-entry">
+            <legend><span class="entry-number">01</span> Student details</legend>
+            <label for="student-name-1">Student’s full name</label>
+            <input id="student-name-1" name="studentName" type="text" placeholder="e.g. Alex Doe" autocomplete="name" required>
+            <label for="student-class-1">Class</label>
+            <select id="student-class-1" name="studentClass" required>
+              <option value="" disabled selected>Select a class</option>
+              <option>Nursery</option><option>Kindergarten</option>
+              <option>Grade 1</option><option>Grade 2</option><option>Grade 3</option><option>Grade 4</option><option>Grade 5</option><option>Grade 6</option>
+              <option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
+              <option value="other">Other</option>
+            </select>
+          </fieldset>
+        </div>
+
+        <button type="button" id="add-student" class="add-button"><span aria-hidden="true">＋</span> Add another student</button>
+        <button type="submit" class="submit-button"><span>Send check-in on WhatsApp</span><span aria-hidden="true">↗</span></button>
+        <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+      </form>
+      <p class="privacy-note"><span aria-hidden="true">▣</span> WhatsApp will open with the check-in ready to send.</p>
+    </section>
+    <footer>Learning today, leading tomorrow.</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
