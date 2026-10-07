@@ -1,4 +1,4 @@
-const form = document.getElementById('checkin-form');
+ï»¿const form = document.getElementById('checkin-form');
 const studentList = document.getElementById('student-list');
 const addButton = document.getElementById('add-student');
 // Use the school's international WhatsApp number, digits only.
@@ -46,16 +46,16 @@ form.addEventListener('submit', event => {
   status.textContent = '';
 
   if (!teacherName || students.some(name => !name)) {
-    status.textContent = 'Enter the approving teacher’s name and every student’s name.';
+    status.textContent = 'Enter the approving teacherï¿½s name and every studentï¿½s name.';
     return;
   }
   if (!/^\d{8,15}$/.test(WHATSAPP_PHONE_NUMBER)) {
-    status.textContent = 'Set WHATSAPP_PHONE_NUMBER in script.js to the school’s WhatsApp number in international format (digits only).';
+    status.textContent = 'Set WHATSAPP_PHONE_NUMBER in script.js to the school's WhatsApp number in international format (digits only).';
     return;
   }
 
   const destination = document.querySelector('.destination-copy strong').textContent.trim();
-  const message = `*${destination} Check-In*\n*Teacher:* ${teacherName}\n*Students:*\n${students.map(name => `• ${name}`).join('\n')}`;
+  const message = `*${destination} Check-In*\n*Teacher:* ${teacherName}\n*Students:*\n${students.map(name => `ï¿½ ${name}`).join('\n')}`;
   const url = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
   const whatsappWindow = window.open(url, '_blank', 'noopener,noreferrer');
 
