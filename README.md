@@ -1,6 +1,6 @@
 # Dieudonne ICT Lab check-in
 
-This page sends the student roster from the server through the official WhatsApp Business Cloud API. It does not open WhatsApp on the teacher's device.
+This page sends the approving teacher's name and student roster from the server through the official WhatsApp Business Cloud API. It does not open WhatsApp on the teacher's device.
 
 ## Setup
 

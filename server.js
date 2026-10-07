@@ -17,8 +17,10 @@ app.post('/api/checkin', async (req, res) => {
     return res.status(503).json({ error: 'The configured school WhatsApp recipient number is invalid.' });
   }
 
+  const teacherName = req.body?.teacherName;
   const students = req.body?.students;
-  if (!Array.isArray(students) || students.length < 1 || students.length > 30 || students.some(student =>
+  if (typeof teacherName !== 'string' || !teacherName.trim() || teacherName.length > 100 ||
+    !Array.isArray(students) || students.length < 1 || students.length > 30 || students.some(student =>
     typeof student?.name !== 'string' || !student.name.trim() || student.name.length > 100 ||
     typeof student?.classroom !== 'string' || !student.classroom.trim() || student.classroom.length > 50
   )) {
@@ -27,7 +29,7 @@ app.post('/api/checkin', async (req, res) => {
 
   const date = new Intl.DateTimeFormat('en', { dateStyle: 'medium' }).format(new Date());
   const roster = students.map((student, index) => `${index + 1}. ${student.name.trim()} - ${student.classroom.trim()}`).join('\n');
-  const text = `ICT LAB STUDENT CHECK-IN\nDieudonne International School\nDate: ${date}\n\n${roster}`;
+  const text = `ICT LAB STUDENT APPROVAL\nDieudonne International School\nApproving teacher: ${teacherName.trim()}\nDate: ${date}\n\nApproved students:\n${roster}`;
 
   try {
     const apiResponse = await fetch(`https://graph.facebook.com/${WHATSAPP_API_VERSION}/${WHATSAPP_PHONE_NUMBER_ID}/messages`, {

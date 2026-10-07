@@ -36,6 +36,7 @@ addButton.addEventListener('click', () => {
 form.addEventListener('submit', async event => {
   event.preventDefault();
   if (!form.reportValidity()) return;
+  const teacherName = form.elements.teacherName.value.trim();
   const students = [...studentList.querySelectorAll('.student-entry')].map(entry => ({
     name: entry.querySelector('[name="studentName"]').value.trim(),
     classroom: entry.querySelector('[name="studentClass"]').value
@@ -49,10 +50,24 @@ form.addEventListener('submit', async event => {
     const response = await fetch('/api/checkin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ students })
+      body: JSON.stringify({ teacherName, students })
     });
-    const result = await response.json();
-    if (!response.ok) throw new Error(result.error || 'The check-in could not be sent.');
+    const contentType = response.headers.get('content-type') || '';
+    const responseText = await response.text();
+    let result = null;
+
+    if (contentType.toLowerCase().includes('application/json')) {
+      try {
+        result = responseText ? JSON.parse(responseText) : {};
+      } catch {
+        throw new Error(`The server returned invalid JSON (HTTP ${response.status}). Please try again later.`);
+      }
+    } else {
+      const status = `${response.status}${response.statusText ? ` ${response.statusText}` : ''}`;
+      throw new Error(`The server returned a web page instead of JSON (HTTP ${status}). Check that the app is running with its backend and that POST /api/checkin is available.`);
+    }
+
+    if (!response.ok) throw new Error(result.error || `The check-in could not be sent (HTTP ${response.status}).`);
     window.alert('WhatsApp accepted the check-in for sending to the school number.');
     form.reset();
     [...studentList.querySelectorAll('.student-entry')].slice(1).forEach(entry => entry.remove());
