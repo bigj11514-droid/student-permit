@@ -48,7 +48,7 @@ form.addEventListener('submit', event => {
   message.textContent = '';
   if (!form.reportValidity()) return;
   if (!/^\d{8,15}$/.test(WHATSAPP_NUMBER)) {
-    message.textContent = 'Set the school WhatsApp number in script.js before sending (international format, digits only).';
+    window.alert('There was a problem preparing the WhatsApp check-in. Please ask the site administrator to set the school WhatsApp number in script.js.');
     return;
   }
 
@@ -59,5 +59,16 @@ form.addEventListener('submit', event => {
   const date = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' }).format(new Date());
   const lines = students.map((student, index) => `${index + 1}. ${student.name} — ${student.classroom}`);
   const text = `ICT LAB STUDENT CHECK-IN\nDieudonne International School\nDate: ${date}\n\n${lines.join('\n')}`;
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+  try {
+    const whatsappWindow = window.open(whatsappUrl, '_blank');
+    if (!whatsappWindow) {
+      window.alert('Your browser blocked the WhatsApp window. Allow pop-ups for this site and try again.');
+      return;
+    }
+    whatsappWindow.opener = null;
+    window.alert('The check-in is ready in WhatsApp. Please review it and tap Send there to complete submission.');
+  } catch (error) {
+    window.alert('There was a problem opening WhatsApp. Please check your connection and try again.');
+  }
 });
