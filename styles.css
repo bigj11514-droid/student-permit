@@ -140,46 +140,58 @@ body::after {
 }
 
 .card-topline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 22px;
+  margin-bottom: 23px;
 }
 
-.lab-icon {
+.lab-destination {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 76px;
+  padding: 13px 17px;
+  border: 1px solid #6cf2c255;
+  border-radius: 14px;
+  color: #f0fff9;
+  background: linear-gradient(105deg, #145443, #103b37 74%, #123331);
+  box-shadow: 0 8px 24px #071a1550, inset 0 1px #ffffff10;
+}
+
+.destination-icon {
   display: grid;
-  width: 40px;
-  height: 40px;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
   place-items: center;
-  border: 1px solid #6cf2c22b;
+  border: 1px solid #b6ffe33b;
   border-radius: 12px;
-  color: var(--green);
-  background: #6cf2c212;
-  font-size: 21px;
-  font-weight: 700;
+  color: #8df7cf;
+  background: #8df7cf18;
+  font-size: 22px;
 }
 
-.status {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 10px;
-  border: 1px solid #6cf2c225;
-  border-radius: 999px;
-  color: #b2d6cc;
-  background: #6cf2c20a;
+.destination-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.destination-label {
+  color: #b3d8cb;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 9px;
   font-weight: 500;
-  letter-spacing: .13em;
+  letter-spacing: .16em;
 }
 
-.status span {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 10px #6cf2c2;
+.destination-copy strong {
+  color: #f2fff9;
+  font: 700 22px/1.1 'Space Grotesk', sans-serif;
+  letter-spacing: .035em;
+}
+
+.destination-arrow {
+  margin-left: auto;
+  color: #8df7cf;
+  font-size: 22px;
 }
 
 h2 {
