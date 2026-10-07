@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -30,12 +30,16 @@
         </div>
       </div>
       <h2 id="page-title">Student check-in</h2>
-      <p class="intro">Record the students who are coming to the ICT lab. Their details will be sent for confirmation.</p>
+      <p class="intro">Record the students coming to the ICT lab. Review the prepared WhatsApp message and send it to confirm.</p>
 
       <form id="checkin-form">
         <div class="teacher-field">
           <label for="teacher-name">Approving teacher’s name</label>
           <input id="teacher-name" name="teacherName" type="text" placeholder="Enter your full name" autocomplete="name" maxlength="100" required>
+        </div>
+        <div class="teacher-field">
+          <label for="teacher-phone">Teacher's WhatsApp number</label>
+          <input id="teacher-phone" name="teacherPhone" type="tel" placeholder="e.g. +233 20 123 4567" autocomplete="tel" maxlength="20" required>
         </div>
         <div id="student-list" class="student-list">
           <fieldset class="student-entry">
@@ -57,10 +61,11 @@
         <button type="submit" class="submit-button"><span>Approve &amp; send check-in</span><span aria-hidden="true">↗</span></button>
         <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
       </form>
-      <p class="privacy-note"><span aria-hidden="true">▣</span> Approved check-ins are sent directly to the ICT Teacher’s WhatsApp number.</p>
+      <p class="privacy-note"><span aria-hidden="true">▣</span> WhatsApp opens with the message ready. The teacher must press Send.</p>
     </section>
     <footer>Learning today, leading tomorrow.</footer>
   </main>
   <script src="script.js"></script>
 </body>
 </html>
+

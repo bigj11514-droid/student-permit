@@ -6,6 +6,6 @@ This is a static check-in form for GitHub Pages. Submitting opens WhatsApp with 
 
 1. Confirm the configured WhatsApp recipient in `script.js` is correct. It is set to `233207918169` (Ghana country code plus the provided local number without its leading zero).
 2. Publish the files to GitHub Pages.
-3. Enter the approving teacher's name and student names, then choose **Approve & send check-in**. WhatsApp opens with the message ready to review and send.
+3. Enter the teacher's name and WhatsApp number, student names, and classes, then choose **Approve & send check-in**. WhatsApp opens with the message ready to review and send.
 
-The phone number is part of the public page source. Do not put access tokens or other secrets in the client-side files. The WhatsApp recipient must have an active WhatsApp account.
+The school phone number is part of the public page source. Do not put access tokens or other secrets in the client-side files. The teacher's number is included in the message but does not change which WhatsApp account sends it. The school recipient must have an active WhatsApp account.

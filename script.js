@@ -40,28 +40,33 @@ form.addEventListener('submit', event => {
   if (!form.reportValidity()) return;
 
   const teacherName = form.elements.teacherName.value.trim();
-  const students = [...studentList.querySelectorAll('.student-entry')]
-    .map(entry => entry.querySelector('[name="studentName"]').value.trim());
+  const teacherPhone = form.elements.teacherPhone.value.trim();
+  const teacherPhoneDigits = teacherPhone.replace(/\D/g, '');
+  const students = [...studentList.querySelectorAll('.student-entry')].map(entry => ({
+    name: entry.querySelector('[name="studentName"]').value.trim(),
+    classroom: entry.querySelector('[name="studentClass"]').value
+  }));
   const status = document.getElementById('form-message');
   status.textContent = '';
 
-  if (!teacherName || students.some(name => !name)) {
-    status.textContent = 'Enter the approving teacher�s name and every student�s name.';
+  if (!teacherName || !teacherPhone || students.some(student => !student.name || !student.classroom)) {
+    status.textContent = 'Enter the teacher name and number, and complete every student name and class.';
+    return;
+  }
+  if (teacherPhoneDigits.length < 8 || teacherPhoneDigits.length > 15) {
+    status.textContent = 'Enter a valid teacher phone number, including the country code.';
+    form.elements.teacherPhone.focus();
     return;
   }
   if (!/^\d{8,15}$/.test(WHATSAPP_PHONE_NUMBER)) {
-    status.textContent = 'Set WHATSAPP_PHONE_NUMBER in script.js to the school's WhatsApp number in international format (digits only).';
+    status.textContent = 'The school's WhatsApp recipient number is not configured correctly.';
     return;
   }
 
   const destination = document.querySelector('.destination-copy strong').textContent.trim();
-  const message = `*${destination} Check-In*\n*Teacher:* ${teacherName}\n*Students:*\n${students.map(name => `� ${name}`).join('\n')}`;
+  const studentLines = students.map((student, index) => `${index + 1}. ${student.name} - ${student.classroom}`);
+  const message = `*${destination} Check-In*\n*Teacher:* ${teacherName}\n*Teacher WhatsApp:* ${teacherPhone}\n*Students:*\n${studentLines.join('\n')}`;
   const url = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
-  const whatsappWindow = window.open(url, '_blank', 'noopener,noreferrer');
-
-  if (whatsappWindow) {
-    status.textContent = 'WhatsApp opened with the check-in ready to send. Review it and press Send.';
-  } else {
-    status.textContent = 'Your browser blocked the WhatsApp window. Allow pop-ups for this site and try again.';
-  }
+  window.open(url, '_blank');
+  status.textContent = 'WhatsApp opened with the check-in ready. Review the recipient and message, then press Send in WhatsApp.';
 });
