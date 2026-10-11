@@ -61,7 +61,7 @@ form.addEventListener('submit', event => {
     return;
   }
   if (!/^\d{8,15}$/.test(WHATSAPP_PHONE_NUMBER)) {
-    status.textContent = 'The school's WhatsApp recipient number is not configured correctly.';
+    status.textContent = "The school's WhatsApp recipient number is not configured correctly.";
     return;
   }
 
