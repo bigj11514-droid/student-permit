@@ -296,75 +296,68 @@ label {
   font-weight: 600;
 }
 
-input,
-select {
+.input-border {
   display: block;
   width: 100%;
-  height: 48px;
+  padding: 1px;
+  border-radius: 11px;
+  background: conic-gradient(
+    from var(--border-angle),
+    #355264 0deg 245deg,
+    #ffbd69 275deg,
+    #ff7a90 315deg,
+    #355264 360deg
+  );
+  animation: border-travel 6s linear infinite;
+}
+
+.input-border:focus-within {
+  box-shadow: 0 0 0 3px #ffbd6920, 0 0 22px #ff7a9020;
+}
+
+.input-border input,
+.input-border select {
+  display: block;
+  width: 100%;
+  height: 46px;
   padding: 0 14px;
-  border: 1px solid transparent;
-  border-radius: 10px;
+  border: 0;
+  border-radius: 9px;
   outline: none;
   color: #edfaf7;
   background-color: #091923;
-  background-image:
-    linear-gradient(transparent, transparent),
-    conic-gradient(
-      from var(--border-angle),
-      #355264 0deg 245deg,
-      #ffbd69 275deg,
-      #ff7a90 315deg,
-      #355264 360deg
-    );
-  background-origin: padding-box, border-box;
-  background-clip: padding-box, border-box;
   box-shadow: inset 0 1px #ffffff08, 0 5px 16px #00000012;
   font: 500 13px 'DM Sans', sans-serif;
   transition: box-shadow .2s, background-color .2s;
-  animation: border-travel 6s linear infinite;
   caret-color: var(--green);
 }
 
-input:hover,
-select:hover {
-  border-color: transparent;
+.input-border input:hover,
+.input-border select:hover {
   background-color: #0b1d28;
 }
 
-select {
+.input-border select {
   padding-right: 42px;
   appearance: none;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m4 6 4 4 4-4' stroke='%236cf2c2' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
-    linear-gradient(transparent, transparent),
-    conic-gradient(
-      from var(--border-angle),
-      #355264 0deg 245deg,
-      #ffbd69 275deg,
-      #ff7a90 315deg,
-      #355264 360deg
-    );
-  background-origin: padding-box, padding-box, border-box;
-  background-clip: padding-box, padding-box, border-box;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m4 6 4 4 4-4' stroke='%236cf2c2' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 14px center, 0 0, 0 0;
-  background-size: 16px 16px, auto, auto;
+  background-position: right 14px center;
   cursor: pointer;
 }
 
-select option {
+.input-border select option {
   color: #edfaf7;
   background-color: #0d1c29;
 }
 
-input::placeholder,
-select:invalid {
+.input-border input::placeholder,
+.input-border select:invalid {
   color: #8299a2;
 }
 
-input:focus,
-select:focus {
-  border-color: transparent;
+.input-border input:focus,
+.input-border select:focus {
   background-color: #0d222d;
   box-shadow: 0 0 0 3px #6cf2c21c, 0 0 22px #6cf2c21c, inset 0 1px #ffffff0b;
 }
@@ -550,8 +543,7 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  input,
-  select {
+  .input-border {
     animation: none;
   }
 

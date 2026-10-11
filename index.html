@@ -35,21 +35,21 @@
       <form id="checkin-form">
         <div class="teacher-field">
           <label for="teacher-name">Approving teacher's name</label>
-          <input id="teacher-name" name="teacherName" type="text" placeholder="Enter your full name" autocomplete="name" maxlength="100" required>
+          <span class="input-border"><input id="teacher-name" name="teacherName" type="text" placeholder="Enter your full name" autocomplete="name" maxlength="100" required></span>
         </div>
 
         <div class="teacher-field">
           <label for="teacher-phone">Teacher's WhatsApp number</label>
-          <input id="teacher-phone" name="teacherPhone" type="tel" placeholder="e.g. +233 20 123 4567" autocomplete="tel" maxlength="25" required>
+          <span class="input-border"><input id="teacher-phone" name="teacherPhone" type="tel" placeholder="e.g. +233 20 123 4567" autocomplete="tel" maxlength="25" required></span>
         </div>
 
         <div id="student-list" class="student-list">
           <fieldset class="student-entry">
             <legend><span class="entry-number">01</span> Student details</legend>
             <label for="student-name-1">Student's full name</label>
-            <input id="student-name-1" name="studentName" type="text" placeholder="e.g. Alex Doe" maxlength="100" required>
+            <span class="input-border"><input id="student-name-1" name="studentName" type="text" placeholder="e.g. Alex Doe" maxlength="100" required></span>
             <label for="student-class-1">Class</label>
-            <select id="student-class-1" name="studentClass" required>
+            <span class="input-border"><select id="student-class-1" name="studentClass" required>
               <option value="" disabled selected>Select a class</option>
               <option>Nursery</option>
               <option>Kindergarten</option>
@@ -58,7 +58,7 @@
               <option>Grade 7</option><option>Grade 8</option><option>Grade 9</option>
               <option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
               <option value="other">Other</option>
-            </select>
+            </select></span>
           </fieldset>
         </div>
 
