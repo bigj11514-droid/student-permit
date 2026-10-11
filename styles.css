@@ -302,29 +302,53 @@ select {
   width: 100%;
   height: 48px;
   padding: 0 14px;
-  border: 1px solid #355264;
+  border: 1px solid transparent;
   border-radius: 10px;
   outline: none;
   color: #edfaf7;
   background-color: #091923;
+  background-image:
+    linear-gradient(transparent, transparent),
+    conic-gradient(
+      from var(--border-angle),
+      #355264 0deg 245deg,
+      #ffbd69 275deg,
+      #ff7a90 315deg,
+      #355264 360deg
+    );
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
   box-shadow: inset 0 1px #ffffff08, 0 5px 16px #00000012;
   font: 500 13px 'DM Sans', sans-serif;
-  transition: border-color .2s, box-shadow .2s, background-color .2s;
+  transition: box-shadow .2s, background-color .2s;
+  animation: border-travel 6s linear infinite;
   caret-color: var(--green);
 }
 
 input:hover,
 select:hover {
-  border-color: #507384;
+  border-color: transparent;
   background-color: #0b1d28;
 }
 
 select {
   padding-right: 42px;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m4 6 4 4 4-4' stroke='%236cf2c2' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m4 6 4 4 4-4' stroke='%236cf2c2' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
+    linear-gradient(transparent, transparent),
+    conic-gradient(
+      from var(--border-angle),
+      #355264 0deg 245deg,
+      #ffbd69 275deg,
+      #ff7a90 315deg,
+      #355264 360deg
+    );
+  background-origin: padding-box, padding-box, border-box;
+  background-clip: padding-box, padding-box, border-box;
   background-repeat: no-repeat;
-  background-position: right 14px center;
+  background-position: right 14px center, 0 0, 0 0;
+  background-size: 16px 16px, auto, auto;
   cursor: pointer;
 }
 
@@ -340,7 +364,7 @@ select:invalid {
 
 input:focus,
 select:focus {
-  border-color: var(--green-bright);
+  border-color: transparent;
   background-color: #0d222d;
   box-shadow: 0 0 0 3px #6cf2c21c, 0 0 22px #6cf2c21c, inset 0 1px #ffffff0b;
 }
@@ -526,6 +550,11 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  input,
+  select {
+    animation: none;
+  }
+
   .checkin-card::after,
   .lab-destination::before,
   .student-entry::after {
