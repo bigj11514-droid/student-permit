@@ -175,67 +175,8 @@ body::after {
   line-height: 1.8;
 }
 
-.welcome-divider {
-  width: 100%;
-  max-width: 388px;
-  height: 1px;
-  margin: 0 0 22px;
-  background: linear-gradient(90deg, #6cf2c25c, #70d9ff14, transparent);
-}
-
-.welcome-panel h3 {
-  margin: 0 0 15px;
-  color: #e0f0ee;
-  font: 600 14px 'Space Grotesk', sans-serif;
-}
-
-.visit-steps {
-  display: grid;
-  gap: 15px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.visit-steps li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.step-number {
-  display: grid;
-  width: 31px;
-  height: 31px;
-  flex: 0 0 31px;
-  place-items: center;
-  border: 1px solid #70d9ff36;
-  border-radius: 9px;
-  color: var(--cyan);
-  background: #70d9ff0d;
-  font: 500 10px 'IBM Plex Mono', monospace;
-}
-
-.visit-steps li strong,
-.visit-steps li small {
-  display: block;
-}
-
-.visit-steps li strong {
-  margin: 1px 0 4px;
-  color: #dcebea;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.visit-steps li small {
-  color: #8fa8b1;
-  font-size: 11px;
-  line-height: 1.55;
-}
-
 .welcome-footnote {
-  margin: 25px 0 0;
+  margin: 23px 0 0;
   color: #9ab3b6;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
@@ -628,6 +569,19 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+@media (max-width: 760px) {
+  body {
+    align-items: flex-start;
+  }
+
+  .page-shell {
+    width: min(100% - 40px, 560px);
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 32px 0 24px;
+  }
+}
+
 @media (max-width: 520px) {
   body {
     align-items: flex-start;
@@ -680,16 +634,8 @@ button:focus-visible {
     font-size: 13px;
   }
 
-  .welcome-divider {
-    margin-bottom: 17px;
-  }
-
-  .visit-steps {
-    gap: 12px;
-  }
-
   .welcome-footnote {
-    margin-top: 17px;
+    margin-top: 16px;
   }
 
   .checkin-card h2 {
