@@ -32,17 +32,19 @@ body {
   font-family: 'DM Sans', sans-serif;
   background-color: var(--night);
   background-image:
-    radial-gradient(ellipse at 12% 18%, #14564a66 0, transparent 34%),
-    radial-gradient(ellipse at 88% 78%, #12456a55 0, transparent 36%),
+    radial-gradient(ellipse at 13% 16%, #0e786c55 0, transparent 35%),
+    radial-gradient(ellipse at 82% 72%, #1767a44a 0, transparent 37%),
+    radial-gradient(ellipse at 56% 0%, #533f9250 0, transparent 40%),
     linear-gradient(#ffffff08 1px, transparent 1px),
     linear-gradient(90deg, #ffffff08 1px, transparent 1px);
-  background-size: auto, auto, 48px 48px, 48px 48px;
+  background-size: auto, auto, auto, 48px 48px, 48px 48px;
+  background-position: center, center, center, center, center;
 }
 
 body::before,
 body::after {
   position: fixed;
-  z-index: -1;
+  z-index: 0;
   width: 340px;
   height: 340px;
   border: 1px solid #6cf2c21c;
@@ -68,17 +70,22 @@ body::after {
 
 .page-shell {
   position: relative;
-  z-index: 0;
-  width: min(100% - 32px, 560px);
+  z-index: 1;
+  display: grid;
+  width: min(100% - 64px, 1080px);
+  grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+  align-items: center;
+  gap: 28px 64px;
   margin: 0 auto;
-  padding: 42px 0 28px;
+  padding: 48px 0 34px;
 }
 
 .school-header {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin: 0 0 24px 4px;
+  grid-column: 1 / -1;
+  margin: 0 0 2px 4px;
 }
 
 .school-mark {
@@ -122,6 +129,122 @@ body::after {
 
 .mobile-break {
   display: none;
+}
+
+.welcome-panel {
+  padding: 8px 0 12px;
+}
+
+.welcome-kicker {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 21px;
+  color: #a5c8cb;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .13em;
+}
+
+.signal-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px #6cf2c2a8;
+}
+
+.welcome-panel h2 {
+  margin: 0;
+  font: 600 clamp(38px, 5vw, 57px)/1.06 'Space Grotesk', sans-serif;
+  letter-spacing: -2.8px;
+}
+
+.welcome-panel h2 span {
+  color: var(--green);
+}
+
+.welcome-copy {
+  max-width: 390px;
+  margin: 19px 0 24px;
+  color: #a9bec3;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.welcome-divider {
+  width: 100%;
+  max-width: 388px;
+  height: 1px;
+  margin: 0 0 22px;
+  background: linear-gradient(90deg, #6cf2c25c, #70d9ff14, transparent);
+}
+
+.welcome-panel h3 {
+  margin: 0 0 15px;
+  color: #e0f0ee;
+  font: 600 14px 'Space Grotesk', sans-serif;
+}
+
+.visit-steps {
+  display: grid;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visit-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.step-number {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  flex: 0 0 31px;
+  place-items: center;
+  border: 1px solid #70d9ff36;
+  border-radius: 9px;
+  color: var(--cyan);
+  background: #70d9ff0d;
+  font: 500 10px 'IBM Plex Mono', monospace;
+}
+
+.visit-steps li strong,
+.visit-steps li small {
+  display: block;
+}
+
+.visit-steps li strong {
+  margin: 1px 0 4px;
+  color: #dcebea;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.visit-steps li small {
+  color: #8fa8b1;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.welcome-footnote {
+  margin: 25px 0 0;
+  color: #9ab3b6;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .04em;
+}
+
+.welcome-footnote span {
+  margin-right: 5px;
+  color: var(--green);
 }
 
 .checkin-card {
@@ -176,7 +299,19 @@ body::after {
 }
 
 .card-topline {
-  margin-bottom: 23px;
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #9cb7b9;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .1em;
 }
 
 .lab-destination {
@@ -304,15 +439,15 @@ label {
   background: conic-gradient(
     from var(--border-angle),
     #355264 0deg 245deg,
-    #ffbd69 275deg,
-    #ff7a90 315deg,
+    #70d9ff 275deg,
+    #83ffd0 315deg,
     #355264 360deg
   );
   animation: border-travel 6s linear infinite;
 }
 
 .input-border:focus-within {
-  box-shadow: 0 0 0 3px #ffbd6920, 0 0 22px #ff7a9020;
+  box-shadow: 0 0 0 3px #6cf2c21c, 0 0 22px #70d9ff20;
 }
 
 .input-border input,
@@ -477,9 +612,12 @@ label {
 }
 
 footer {
+  display: flex;
+  grid-column: 1 / -1;
+  justify-content: space-between;
   padding: 21px 0 0;
+  border-top: 1px solid #ffffff12;
   color: #91aaa9;
-  text-align: center;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 9px;
   letter-spacing: .08em;
@@ -497,7 +635,9 @@ button:focus-visible {
 
   .page-shell {
     width: min(100% - 28px, 440px);
-    padding-top: 26px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 25px;
+    padding: 26px 0 22px;
   }
 
   .checkin-card {
@@ -510,7 +650,7 @@ button:focus-visible {
   }
 
   .school-header {
-    margin-bottom: 20px;
+    margin-bottom: 0;
   }
 
   .school-header h1 {
@@ -521,7 +661,38 @@ button:focus-visible {
     display: initial;
   }
 
-  h2 {
+  .welcome-panel {
+    padding: 0 2px;
+  }
+
+  .welcome-kicker {
+    margin-bottom: 14px;
+    font-size: 9px;
+  }
+
+  .welcome-panel h2 {
+    font-size: 39px;
+    letter-spacing: -2px;
+  }
+
+  .welcome-copy {
+    margin: 13px 0 18px;
+    font-size: 13px;
+  }
+
+  .welcome-divider {
+    margin-bottom: 17px;
+  }
+
+  .visit-steps {
+    gap: 12px;
+  }
+
+  .welcome-footnote {
+    margin-top: 17px;
+  }
+
+  .checkin-card h2 {
     font-size: 27px;
   }
 
@@ -539,6 +710,13 @@ button:focus-visible {
 
   .student-entry {
     padding: 15px 13px 16px;
+  }
+
+  footer {
+    gap: 8px;
+    flex-direction: column;
+    font-size: 8px;
+    text-align: center;
   }
 }
 
