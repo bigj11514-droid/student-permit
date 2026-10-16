@@ -39,6 +39,27 @@ function readStoredArray(key, label) {
   if (!Array.isArray(parsed)) {
     throw new Error(`Saved ${label} data has an invalid format. Delete the damaged browser data before continuing.`);
   }
+  const isValid = label === 'visit history'
+    ? parsed.every(record => record
+      && typeof record.id === 'string'
+      && typeof record.teacherName === 'string'
+      && typeof record.teacherPhone === 'string'
+      && typeof record.purpose === 'string'
+      && typeof record.visitTime === 'string'
+      && (record.checkOutTime === null || typeof record.checkOutTime === 'string')
+      && Array.isArray(record.students)
+      && record.students.every(student => student
+        && typeof student.name === 'string'
+        && typeof student.classroom === 'string'))
+    : parsed.every(session => session
+      && typeof session.id === 'string'
+      && typeof session.name === 'string'
+      && weekdays.includes(session.day)
+      && typeof session.start === 'string'
+      && typeof session.end === 'string');
+  if (!isValid) {
+    throw new Error(`Saved ${label} data has an invalid format. Delete the damaged browser data before continuing.`);
+  }
   return parsed;
 }
 
@@ -56,7 +77,6 @@ function showStorageError(error) {
   const notice = document.getElementById('storage-notice');
   notice.textContent = `Browser storage is unavailable: ${error.message} Visit history and schedules cannot be saved.`;
   notice.dataset.state = 'error';
-  document.getElementById('confirm-checkin').disabled = true;
   document.getElementById('download-report').disabled = true;
   document.getElementById('clear-history').disabled = true;
   document.getElementById('schedule-form').querySelector('button[type="submit"]').disabled = true;
@@ -304,8 +324,8 @@ editCheckin.addEventListener('click', () => {
 });
 
 confirmCheckin.addEventListener('click', () => {
-  if (!pendingCheckin || !storageReady) {
-    showMessage(status, 'The visit could not be saved. Check the browser storage notice before continuing.', true);
+  if (!pendingCheckin) {
+    showMessage(status, 'Review the visit details before continuing.', true);
     return;
   }
   if (!/^\d{8,15}$/.test(WHATSAPP_PHONE_NUMBER)) {
@@ -314,6 +334,15 @@ confirmCheckin.addEventListener('click', () => {
   }
   const message = buildCheckinMessage(pendingCheckin);
   const url = makeWhatsAppUrl(message);
+  if (!storageReady) {
+    whatsappLink.href = url;
+    whatsappLink.hidden = false;
+    reviewPanel.hidden = true;
+    showMessage(status, 'Browser storage is unavailable, so this visit was not saved. WhatsApp should open; use the link below if it does not.', true);
+    window.open(url, '_blank', 'noopener,noreferrer');
+    pendingCheckin = null;
+    return;
+  }
   try {
     const updatedAttendance = [...attendance, pendingCheckin];
     saveStoredArray(ATTENDANCE_KEY, updatedAttendance);
@@ -326,7 +355,13 @@ confirmCheckin.addEventListener('click', () => {
     window.open(url, '_blank', 'noopener,noreferrer');
     pendingCheckin = null;
   } catch (error) {
-    showMessage(status, `The check-in could not be saved, so WhatsApp was not opened: ${error.message}`, true);
+    showStorageError(error);
+    whatsappLink.href = url;
+    whatsappLink.hidden = false;
+    reviewPanel.hidden = true;
+    showMessage(status, `This visit was not saved: ${error.message} WhatsApp should open; use the link below if it does not.`, true);
+    window.open(url, '_blank', 'noopener,noreferrer');
+    pendingCheckin = null;
   }
 });
 
