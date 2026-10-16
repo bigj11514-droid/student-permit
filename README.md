@@ -10,3 +10,5 @@ A static GitHub Pages form that prepares a WhatsApp message for the ICT teacher.
 4. Review the message in WhatsApp and press **Send**.
 
 The recipient is set in `script.js` as `233207918169`, the international format for the provided Ghanaian number `0207918169`. A teacher's device needs WhatsApp installed or WhatsApp Web signed in. If the browser blocks the new tab, use the **Open WhatsApp message** link shown by the form.
+
+The destination photo (`ict-lab-photo.jpg`) is from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Computer_Lab_Baraboo.jpg), by JackFromWisconsin, and is released under CC0.
