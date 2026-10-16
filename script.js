@@ -222,7 +222,7 @@ function downloadReport() {
   document.body.append(link);
   link.click();
   link.remove();
-  URL.revokeObjectURL(url);
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   showMessage(historyMessage, 'Visit report downloaded.');
 }
 
@@ -430,9 +430,13 @@ scheduleList.addEventListener('click', event => {
 document.getElementById('visit-time').value = localDateTimeValue(new Date());
 try {
   attendance = readStoredArray(ATTENDANCE_KEY, 'visit history');
-  schedule = readStoredArray(SCHEDULE_KEY, 'weekly schedule');
-  renderHistory();
-  renderSchedule();
 } catch (error) {
   showStorageError(error);
 }
+try {
+  schedule = readStoredArray(SCHEDULE_KEY, 'weekly schedule');
+} catch (error) {
+  showStorageError(error);
+}
+renderHistory();
+renderSchedule();
