@@ -24,8 +24,8 @@
     <section class="welcome-panel" aria-labelledby="welcome-title">
       <p class="welcome-kicker"><span class="signal-dot" aria-hidden="true"></span> DIEUDONNE INTERNATIONAL SCHOOL</p>
       <h2 id="welcome-title">ICT Lab<br><span>student check-in</span></h2>
-      <p class="welcome-copy">Prepare a WhatsApp check-in for your lab visit. Enter the approving teacher and student details below.</p>
-      <p class="welcome-footnote">Add details <span aria-hidden="true">→</span> Review message <span aria-hidden="true">→</span> Send in WhatsApp</p>
+      <p class="welcome-copy">Record an ICT lab visit, review its details, and prepare a WhatsApp message for the school.</p>
+      <p class="welcome-footnote">Add details <span aria-hidden="true">→</span> Review <span aria-hidden="true">→</span> Check in and out</p>
     </section>
 
     <section class="checkin-card" aria-labelledby="page-title">
@@ -38,7 +38,7 @@
       </div>
 
       <h2 id="page-title">Check-in details</h2>
-      <p class="intro">Add the teacher and every student. The teacher reviews the prepared message before sending it to the school.</p>
+      <p class="intro">Add the teacher, visit information, and every student. Review the message before opening WhatsApp.</p>
 
       <form id="checkin-form">
         <div class="teacher-field">
@@ -49,6 +49,30 @@
         <div class="teacher-field">
           <label for="teacher-phone">Teacher's WhatsApp number</label>
           <span class="input-border"><input id="teacher-phone" name="teacherPhone" type="tel" placeholder="e.g. +233 20 123 4567" autocomplete="tel" maxlength="25" required></span>
+        </div>
+
+        <div class="teacher-field">
+          <label for="visit-time">Visit date and check-in time</label>
+          <span class="input-border"><input id="visit-time" name="visitTime" type="datetime-local" required></span>
+        </div>
+
+        <div class="teacher-field">
+          <label for="visit-purpose">Purpose of visit</label>
+          <span class="input-border"><select id="visit-purpose" name="visitPurpose" required>
+            <option value="" disabled selected>Select a purpose</option>
+            <option>Computer Studies</option>
+            <option>Typing practice</option>
+            <option>Research or project work</option>
+            <option>Digital literacy</option>
+            <option>Other</option>
+          </select></span>
+        </div>
+
+        <div class="teacher-field">
+          <label for="scheduled-session">Weekly lab schedule (optional)</label>
+          <span class="input-border"><select id="scheduled-session" name="scheduledSession">
+            <option value="">Unscheduled lab visit</option>
+          </select></span>
         </div>
 
         <div id="student-list" class="student-list">
@@ -71,15 +95,78 @@
         </div>
 
         <button type="button" id="add-student" class="add-button"><span aria-hidden="true">＋</span> Add another student</button>
-        <button type="submit" class="submit-button"><span>Approve &amp; send check-in</span><span aria-hidden="true">↗</span></button>
+        <button type="submit" class="submit-button"><span>Review check-in</span><span aria-hidden="true">→</span></button>
         <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
         <a id="whatsapp-link" class="whatsapp-link" target="_blank" rel="noopener noreferrer" hidden>Open WhatsApp message</a>
       </form>
 
-      <p class="privacy-note"><span aria-hidden="true">▣</span> Nothing is sent automatically. The teacher reviews the message and presses Send in WhatsApp.</p>
+      <section id="review-panel" class="management-section review-panel" aria-labelledby="review-title" hidden>
+        <h3 id="review-title">Review check-in message</h3>
+        <p>Check the details below. You can go back and edit them before saving the visit.</p>
+        <pre id="message-preview" class="message-preview"></pre>
+        <div class="action-row">
+          <button type="button" id="edit-checkin" class="secondary-button">Edit details</button>
+          <button type="button" id="confirm-checkin" class="submit-button"><span>Save check-in &amp; open WhatsApp</span><span aria-hidden="true">↗</span></button>
+        </div>
+      </section>
+
+      <section class="management-section" aria-labelledby="history-title">
+        <div class="section-heading">
+          <div>
+            <h3 id="history-title">Visit history</h3>
+            <p>Search recorded visits, check students out, or download a CSV report.</p>
+          </div>
+          <button type="button" id="download-report" class="secondary-button">Download report</button>
+        </div>
+        <label for="history-search">Search visits</label>
+        <span class="input-border"><input id="history-search" type="search" placeholder="Search teacher, student, class, or purpose"></span>
+        <p id="history-message" class="form-message" role="status" aria-live="polite"></p>
+        <div id="history-list" class="record-list" aria-live="polite"></div>
+        <p id="empty-history" class="empty-state">No visits recorded on this device yet.</p>
+        <button type="button" id="clear-history" class="text-button">Delete all visit history</button>
+      </section>
+
+      <section class="management-section" aria-labelledby="schedule-title">
+        <div class="section-heading">
+          <div>
+            <h3 id="schedule-title">Weekly lab schedule</h3>
+            <p>Add recurring lab sessions for this device. They will be available when recording a visit.</p>
+          </div>
+        </div>
+        <form id="schedule-form" class="schedule-form">
+          <div class="teacher-field">
+            <label for="schedule-class">Class or session name</label>
+            <span class="input-border"><input id="schedule-class" name="scheduleClass" type="text" maxlength="100" placeholder="e.g. Grade 5 ICT" required></span>
+          </div>
+          <div class="schedule-fields">
+            <div class="teacher-field">
+              <label for="schedule-day">Day</label>
+              <span class="input-border"><select id="schedule-day" name="scheduleDay" required>
+                <option value="" disabled selected>Select a day</option>
+                <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+                <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+              </select></span>
+            </div>
+            <div class="teacher-field">
+              <label for="schedule-start">Start time</label>
+              <span class="input-border"><input id="schedule-start" name="scheduleStart" type="time" required></span>
+            </div>
+            <div class="teacher-field">
+              <label for="schedule-end">End time</label>
+              <span class="input-border"><input id="schedule-end" name="scheduleEnd" type="time" required></span>
+            </div>
+          </div>
+          <button type="submit" class="secondary-button">Add weekly session</button>
+          <p id="schedule-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+        <div id="schedule-list" class="record-list"></div>
+        <p id="empty-schedule" class="empty-state">No weekly sessions added yet.</p>
+      </section>
+
+      <p id="storage-notice" class="privacy-note" role="note"><span aria-hidden="true">▣</span> Visit and schedule data stays in this browser only. This device is not password-protected by the website. Do not use on a shared device; delete records when no longer needed.</p>
     </section>
 
-    <footer>LEARNING TODAY, LEADING TOMORROW.</footer>
+    <footer><span>LEARNING TODAY, LEADING TOMORROW.</span><a class="help-link" href="https://wa.me/233207918169?text=I%20need%20help%20with%20the%20ICT%20lab%20check-in%20website." target="_blank" rel="noopener noreferrer">Need help? Contact the ICT lab</a></footer>
   </main>
   <script src="script.js" defer></script>
 </body>

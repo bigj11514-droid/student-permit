@@ -530,6 +530,11 @@ label {
   color: var(--green);
 }
 
+.form-message[data-state="error"],
+.privacy-note[data-state="error"] {
+  color: #ffaaa0;
+}
+
 .whatsapp-link {
   display: inline-block;
   margin-top: 10px;
@@ -552,6 +557,179 @@ label {
   font-size: 10.5px;
 }
 
+.management-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #ffffff16;
+}
+
+.management-section h3 {
+  margin: 0;
+  color: #eaf7f4;
+  font: 600 18px/1.3 'Space Grotesk', sans-serif;
+  letter-spacing: -.35px;
+}
+
+.management-section > p,
+.section-heading p {
+  margin: 6px 0 15px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.section-heading p {
+  margin-bottom: 0;
+}
+
+.review-panel {
+  padding: 18px;
+  border: 1px solid #6cf2c244;
+  border-radius: 13px;
+  background: #071923a8;
+}
+
+.review-panel > p {
+  margin: 7px 0 13px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.message-preview {
+  max-height: 280px;
+  overflow: auto;
+  margin: 0;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: #d9ebe7;
+  background: #06131d;
+  font: 12px/1.7 'IBM Plex Mono', monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 13px;
+}
+
+.action-row .submit-button {
+  width: auto;
+  flex: 1 1 220px;
+  gap: 14px;
+  padding: 0 13px;
+}
+
+.secondary-button,
+.text-button {
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #70d9ff50;
+  border-radius: 9px;
+  color: #c7edee;
+  background: #0a202b;
+  font: 600 11px 'DM Sans', sans-serif;
+  cursor: pointer;
+}
+
+.secondary-button:hover {
+  border-color: var(--cyan);
+  background: #102b38;
+}
+
+.text-button {
+  min-height: 32px;
+  padding: 5px 0;
+  border: 0;
+  color: #ffaaa0;
+  background: transparent;
+}
+
+.text-button:hover {
+  color: #ffd0ca;
+}
+
+.record-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.record-card {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #09172280;
+}
+
+.record-title {
+  margin: 0 0 5px;
+  color: #e6f5f1;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.record-card p {
+  margin: 4px 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.record-card .checkout-status {
+  color: var(--green);
+}
+
+.record-card .secondary-button {
+  margin-top: 8px;
+}
+
+.empty-state {
+  margin: 12px 0;
+  color: #8ea2aa;
+  font-size: 12px;
+}
+
+.schedule-form .teacher-field {
+  margin-bottom: 12px;
+}
+
+.schedule-fields {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 10px;
+}
+
+.schedule-form > .secondary-button {
+  margin-top: 2px;
+}
+
+.help-link {
+  color: #a9e8d2;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+}
+
 footer {
   display: flex;
   grid-column: 1 / -1;
@@ -565,6 +743,13 @@ footer {
 }
 
 button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 3px;
 }
@@ -648,6 +833,21 @@ button:focus-visible {
 
   .destination-image {
     height: 146px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .schedule-fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .lab-destination {
