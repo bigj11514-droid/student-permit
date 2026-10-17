@@ -11,6 +11,8 @@ A static GitHub Pages app for recording ICT lab visits and preparing WhatsApp me
 5. Review and send the prefilled message in WhatsApp. Record the students' check-out time in **Visit history** when they leave.
 6. Search visit history or download a CSV report for school records.
 
+Use the navigation links near the top of the page to jump between check-in, visit history, the weekly schedule, and help.
+
 The recipient is set in `script.js` as `233207918169`, the international format for the provided Ghanaian number `0207918169`. A teacher's device needs WhatsApp installed or WhatsApp Web signed in. If the browser blocks the new tab, use the **Open WhatsApp message** link shown by the form.
 
 Visit history and the weekly schedule are stored only in the browser on the device being used. They are not backed up or shared with other devices, and this website has no login or access controls. Use only on a school-managed, non-shared device; download reports to an approved location and delete browser records when no longer needed. Do not treat this local storage as the school's authoritative attendance record.

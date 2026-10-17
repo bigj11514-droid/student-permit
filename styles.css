@@ -127,6 +127,53 @@ body::after {
   letter-spacing: -.35px;
 }
 
+.skip-link {
+  position: absolute;
+  z-index: 5;
+  top: 8px;
+  left: 8px;
+  padding: 10px 14px;
+  transform: translateY(-160%);
+  border: 1px solid var(--cyan);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--panel);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-navigation {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 5px 2px 8px;
+  border-bottom: 1px solid #ffffff16;
+  scrollbar-color: #355264 transparent;
+  scrollbar-width: thin;
+}
+
+.site-navigation a {
+  flex: 0 0 auto;
+  padding: 9px 13px;
+  border: 1px solid #355264;
+  border-radius: 9px;
+  color: #bed0d3;
+  background: #0d1c29a8;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color .18s, color .18s, background-color .18s;
+}
+
+.site-navigation a:hover {
+  border-color: #6cf2c277;
+  color: var(--green-bright);
+  background: #12302f;
+}
+
 .mobile-break {
   display: none;
 }
