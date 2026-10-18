@@ -696,6 +696,47 @@ label {
   background: #102b38;
 }
 
+#download-report {
+  display: inline-flex;
+  min-height: 44px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 9px 16px;
+  border-color: #6cf2c277;
+  color: #071d18;
+  background: linear-gradient(110deg, var(--green), var(--cyan));
+  box-shadow: 0 6px 20px #51d9ba20;
+  font-size: 12px;
+  font-weight: 700;
+  transition: transform .18s, filter .18s, box-shadow .18s;
+}
+
+#download-report:hover {
+  transform: translateY(-1px);
+  border-color: #b4ffe9;
+  background: linear-gradient(110deg, var(--green-bright), #a2edff);
+  box-shadow: 0 9px 26px #51d9ba38;
+  filter: brightness(1.04);
+}
+
+#download-report:active {
+  transform: translateY(0);
+}
+
+.download-icon {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  place-items: center;
+  border: 1px solid #0620194a;
+  border-radius: 6px;
+  font-size: 17px;
+  line-height: 1;
+}
+
 .text-button {
   min-height: 32px;
   padding: 5px 0;
@@ -885,6 +926,10 @@ select:focus-visible {
   .section-heading {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  #download-report {
+    width: 100%;
   }
 
   .schedule-fields {
