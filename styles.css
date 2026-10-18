@@ -627,8 +627,8 @@ label {
 
 .section-heading {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: stretch;
+  flex-direction: column;
   gap: 12px;
   margin-bottom: 14px;
 }
@@ -698,8 +698,8 @@ label {
 
 #download-report {
   display: inline-flex;
+  width: 100%;
   min-height: 44px;
-  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   gap: 9px;
@@ -921,15 +921,6 @@ select:focus-visible {
 
   .destination-image {
     height: 146px;
-  }
-
-  .section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  #download-report {
-    width: 100%;
   }
 
   .schedule-fields {
