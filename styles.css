@@ -145,14 +145,28 @@ body::after {
 }
 
 .site-navigation {
+  position: sticky;
+  top: 0;
+  z-index: 4;
   display: flex;
+  align-self: start;
   grid-column: 1 / -1;
   gap: 8px;
   overflow-x: auto;
-  padding: 5px 2px 8px;
+  padding: 10px 8px;
   border-bottom: 1px solid #ffffff16;
+  background: var(--night);
+  box-shadow: 0 8px 18px #07121dcc;
   scrollbar-color: #355264 transparent;
   scrollbar-width: thin;
+}
+
+#home,
+#check-in,
+#visit-history,
+#weekly-schedule,
+#help {
+  scroll-margin-top: 76px;
 }
 
 .site-navigation a {
